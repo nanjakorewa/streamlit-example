@@ -4,3 +4,5 @@ scikit-learn
 streamlit
 black
 isort
+matplotlib
+seaborn
