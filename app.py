@@ -3,6 +3,7 @@ import time
 import streamlit as st
 
 
+# キャッシュ機能のデモ
 @st.cache_data
 def very_slow_function(a):
     time.sleep(10)

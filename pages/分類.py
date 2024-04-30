@@ -2,7 +2,7 @@ import japanize_matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-from sklearn.tree import DecisionTreeRegressor
+from sklearn.tree import DecisionTreeClassifier
 
 import streamlit as st
 
@@ -30,14 +30,6 @@ if uploaded_file is not None:
         y = X[target_column]
         X = X.drop([target_column], axis=1)
 
-        model = DecisionTreeRegressor(random_state=777, max_depth=3)
+        model = DecisionTreeClassifier(random_state=777, max_depth=3)
         model.fit(X, y)
         st.info(f"予測モデル作成が完了しました！")
-
-        st.markdown("### 散布図の確認")
-        col_x = st.selectbox("x軸にする列を選んでください", column_names)
-        col_y = st.selectbox("y軸にする列を選んでください", column_names, index=1)
-
-        fig = plt.figure(figsize=(5, 5))
-        sns.scatterplot(data=df, x=col_x, y=col_y)
-        st.pyplot(fig)

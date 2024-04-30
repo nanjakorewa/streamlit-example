@@ -24,6 +24,11 @@ if uploaded_file is not None:
     target_column = st.selectbox("ターゲットを選んでください", column_names)
     st.info(f"{target_column}を予測対象として予測モデルを作ります！")
 
+    # target_columnが回帰に適切なデータか確認する
+    numeric_columns = df.select_dtypes("number").columns
+    if not target_column in numeric_columns:
+        st.error(f"{target_column}は数値カラムではありません！")
+
     if st.button("モデル作成開始") or st.session_state["target_column"] == target_column:
         st.session_state["target_column"] = target_column
         X = df.copy()
